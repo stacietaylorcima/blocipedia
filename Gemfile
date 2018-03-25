@@ -17,6 +17,8 @@ source 'https://rubygems.org'
   group :development, :test do
     gem 'rspec-rails', '~> 3.0'
     gem 'rails-controller-testing'
+    gem 'factory_bot_rails'
+    gem 'shoulda'
   end
   # Use Puma as the app server
   gem 'puma', '~> 3.0'
