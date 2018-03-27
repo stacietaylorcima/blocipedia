@@ -14,7 +14,7 @@ RSpec.describe Wiki, type: :model do
 
   describe "attributes" do
     it "has a title, body, and user attribute" do
-      expect(post).to have_attributes(title: post.title, body: post.body)
+      expect(wiki).to have_attributes(title: wiki.title, body: wiki.body)
     end
   end
 end
