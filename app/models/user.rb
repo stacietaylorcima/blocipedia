@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :wikis
   enum role: [:standard, :premium, :admin]
   # after_initialize { self.role ||= :standard }
   after_initialize do
