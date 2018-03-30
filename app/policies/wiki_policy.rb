@@ -18,13 +18,6 @@ class WikiPolicy < ApplicationPolicy
   end
 
   # Policy Rules
-  def index?
-    user.present?
-  end
-
-  def show?
-    user.present?
-  end
 
   def new?
     user.present?
@@ -42,7 +35,7 @@ class WikiPolicy < ApplicationPolicy
     user.present?
   end
 
-  # def destroy?
-  #   user.role == 'admin' || record.user == user
-  # end
+  def destroy?
+    user.role == 'admin' || record.user == user
+  end
 end
