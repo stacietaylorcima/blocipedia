@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
   end
 
   def show
@@ -44,7 +44,7 @@ class WikisController < ApplicationController
   def destroy
     @wiki = Wiki.find(params[:id])
     authorize @wiki
-    
+
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title}\" was successfully deleted."
       redirect_to @wiki
