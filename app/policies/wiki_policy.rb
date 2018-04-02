@@ -15,6 +15,10 @@ class WikiPolicy < ApplicationPolicy
     user.present?
   end
 
+  def make_private?
+    user.role == 'premium' || user.role == 'admin'
+  end
+
   def edit
     user.present?
   end

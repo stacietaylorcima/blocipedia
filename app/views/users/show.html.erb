@@ -1,0 +1,14 @@
+<h1>Your Information</h1>
+<div class="role">
+  <%= current_user.email %> - <%= current_user.role %> member
+</div>
+
+<h2>Your Wikis:</h2>
+<div class="row">
+  <div class="col-md-8">
+    <% @wikis.each do |wiki| %>
+      <%= render partial: "wiki", locals: {wiki: wiki} %>
+    <% end %>
+  </div>
+</div>
+<%= link_to "Edit Account Details", edit_user_registration_path, class: 'btn btn-info' %>

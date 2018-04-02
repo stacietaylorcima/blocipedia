@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :wikis 
+  devise_scope :user do
+    get 'downgrade' => 'users#downgrade'
+  end
+
+  resources :wikis
+  resources :charges
+
   get 'welcome/index'
   get 'welcome/about'
+  get 'users/show'
+
   root 'welcome#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
