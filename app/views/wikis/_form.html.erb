@@ -18,6 +18,7 @@
   <%= form_group_tag(@wiki.errors[:body]) do %>
     <%= f.label :body %>
     <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
+    <a href="https://www.markdownguide.org/basic-syntax/">Styling with Markdown is supported</a>
   <% end %>
 
   <% if policy(@wiki).make_private? %>
