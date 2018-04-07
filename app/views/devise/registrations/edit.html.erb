@@ -43,7 +43,7 @@
 
 <% if current_user.premium? %>
   <h3>Downgrade to Standard</h3>
-  <%= link_to "Downgrade", downgrade_path(@user), data: { confirm: 'Your private wikis will all become public when you downgrade. Would you like to contiune?'}, class: 'btn btn-info' %>
+  <%= link_to "Downgrade", downgrade_path(@user), data: { confirm: 'Your private wikis will all become public when you downgrade. Would you like to continue?'}, class: 'btn btn-info' %>
 <% end %>
 
 <h3>Cancel my account</h3>
