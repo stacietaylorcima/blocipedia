@@ -9,3 +9,7 @@
     <%= link_to "Delete", @wiki, method: :delete, class: 'btn btn-danger' %>
   <% end %>
 </div>
+
+<div class="collaborators-list">
+  <%= render partial: 'collaborators', locals: { wiki: @wiki } %>
+</div>

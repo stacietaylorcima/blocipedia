@@ -1,0 +1,14 @@
+<h4>Collaborators</h3>
+  <%= link_to 'Add Collaborator', new_collaborator_path, class: 'btn btn-success' %>
+
+  <ul>
+	<% @wiki.collaborators.each do |collaborator| %>
+		<li>
+      <!-- include the following in a loop: display the name associated with the user.id
+      display the email associated with the user.id
+      display a remove button that links to the destroy method
+       -->
+      <%= link_to "Remove", @collaborator, method: :delete, class: 'btn btn-danger' %>
+    </li>
+	<% end %>
+</ul>

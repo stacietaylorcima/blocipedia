@@ -9,8 +9,8 @@ class UsersController < ApplicationController
     wikis = Wiki.all
 
     current_user.standard!
-    current_user.wikis.update_all(private: false)
-    
+    current_user.wikis.update_all(public: true)
+
     flash[:notice] = "Your account has been downgraded. You are now a Standard member."
     redirect_to users_show_path
   end

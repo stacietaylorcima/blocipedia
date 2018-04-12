@@ -23,8 +23,8 @@
 
   <% if policy(@wiki).make_private? %>
     <div class="form-group">
-      <%= f.label :private %>
-      <%= f.check_box :private %>
+      <%= f.label :public %>
+      <%= f.check_box :public %>
     </div>
   <% end %>
 
