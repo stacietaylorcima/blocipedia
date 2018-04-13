@@ -1,0 +1,8 @@
+<!-- This partial displays each collaborator associated with the wiki and
+gives the wiki owner the ability to remove collaborators.  -->
+
+<% @collaborators.each do |collaborator| %>
+  <ul>
+    <li><%= collaborator.user.email %><%= link_to "Remove", [collaborator.wiki, collaborator], method: :delete, class: 'btn btn-danger' %></li>
+  </ul>
+<% end %>

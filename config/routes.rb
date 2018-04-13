@@ -6,9 +6,12 @@ Rails.application.routes.draw do
     get 'downgrade' => 'users#downgrade'
   end
   resources :charges, only: [:new, :create]
-  resources :wikis
   resources :charges
-  resources :collaborators
+  resources :collaborators, only: [:create, :destroy]
+  resources :wikis
+  resources :wikis, only: [] do
+   resources :collaborators, only: [:create, :destroy]
+ end
 
   get 'welcome/index'
   get 'welcome/about'

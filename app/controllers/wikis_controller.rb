@@ -1,4 +1,5 @@
 class WikisController < ApplicationController
+
   def index
     @wikis = policy_scope(Wiki)
   end
@@ -26,6 +27,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @collaborators = Collaborator.where(wiki_id: @wiki)
   end
 
   def update

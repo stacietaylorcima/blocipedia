@@ -1,1 +1,13 @@
 <%= render partial: 'form', locals: { wiki: @wiki } %>
+
+<div class="row">
+    <h3>Collaborators</h3>
+    <div class="col-md-8">
+      <%= render 'collaborators/form', wiki: @wiki, collaborator: Collaborator.new %>
+    </div>
+    
+    <div class="col-md-8">
+      <h4>Current Collaborators</h4>
+      <%= render partial: 'collaborators/collaborators' %>
+    </div>
+  </div>
