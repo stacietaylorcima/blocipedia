@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :wikis
   has_many :collaborators, dependent: :destroy
+  has_many :wikis, through: :collaborators  
 
   enum role: [:standard, :premium, :admin]
   # after_initialize { self.role ||= :standard }
