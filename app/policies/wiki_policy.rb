@@ -1,24 +1,5 @@
 class WikiPolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve # resolve method acts as a filter for the wikis
-      public_wikis = scope.where(public: true)
-
-      if user.nil?
-        public_wikis # if the user is a guest to the site and has no user role, it will return nil. In that case, show all public wikis.
-      elsif user.try(:admin?)
-        scope.all # if the user is an admin, show all wikis (public and private)
-      elsif user.try(:premium?)
-        private_wikis_owned_by_user = scope.where(user: user, public: false)
-
-        public_wikis.or(private_wikis_owned_by_user) # if the user is a premium user, show all public wikis and all private wikis that user created.
-      else
-        public_wikis #if the user is not a guest, admin, or premium user, they will be a standard user. In that case, show all public wikis.
-      end
-    end
-  end
-
   # Policy Rules
-
   def new?
     user.present?
   end
@@ -41,5 +22,38 @@ class WikiPolicy < ApplicationPolicy
 
   def destroy?
     user.role == 'admin' || record.user == user
+  end
+
+  class Scope < Scope
+  attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+      puts "hi"
+    end
+
+    def resolve
+      wikis = []
+      if user.role == 'admin'
+        wikis = scope.all # if the user is an admin, show them all the wikis
+      elsif user.role == 'premium'
+        all_wikis = scope.all
+        all_wikis.each do |wiki|
+          if wiki.public? || wiki.owner == user || wiki.collaborators.include?(user)
+            wikis << wiki # if the user is premium, only show them public wikis, or that private wikis they created, or private wikis they are a collaborator on
+          end
+        end
+      else # this is the lowly standard user
+        all_wikis = scope.all
+        wikis = []
+        all_wikis.each do |wiki|
+          if wiki.public? || wiki.collaborators.include?(user)
+            wikis << wiki # only show standard users public wikis and private wikis they are a collaborator on
+          end
+        end
+      end
+      wikis # return the wikis array we've built up
+    end
   end
 end
