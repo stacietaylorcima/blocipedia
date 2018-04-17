@@ -34,7 +34,7 @@ Wiki-laborate is a wiki app that allows users to collaborate on posts.
 * Stripe to accept payments
 * Redcarpet to support markdown
 
-### To run Explorit locally:
+### To run Wiki-laborate locally:
 * Clone the repository
 * Run bundle install
 * Create and migrate the SQLite database with `rake db:create and rake db:migrate`
